@@ -1,6 +1,7 @@
 {
   "rules": {
     "class-name": true,
+    "curly": true,
     "comment-format": [
       true,
       "check-space"
@@ -12,10 +13,7 @@
     "one-line": [
       true,
       "check-open-brace",
-      "check-whitespace",
-      false,
-      "check-catch",
-      "check-else"
+      "check-whitespace"
     ],
     "no-var-keyword": true,
     "quotemark": [
