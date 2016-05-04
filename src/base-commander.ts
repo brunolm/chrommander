@@ -1,5 +1,5 @@
 interface FunctionDictionary {
-  [index: string]: (commandArguments: string) => boolean;
+  [index: string]: (commandArguments: string) => Promise<boolean>;
 }
 interface StringDictionary {
   [index: string]: string;

@@ -23,69 +23,66 @@ class BrowserCommands extends BaseCommander {
     };
   }
 
-  private newTab(commandArgument: string) {
+  private async newTab(commandArgument: string) {
     if (commandArgument && !/^.*?\:\/\//.test(commandArgument)) {
       commandArgument = `http://${commandArgument}`;
     }
     chrome.tabs.create({ url: commandArgument || 'about:blank' });
     return true;
   }
-  private pin(commandArgument: string, pinned = true) {
-    chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-      chrome.tabs.update(tabs[0].id, { pinned });
-    });
+  private async pin(commandArgument: string, pinned = true) {
+    const currentTab = await Core.getCurrentTab();
+    chrome.tabs.update(currentTab.id, { pinned });
     return true;
   }
-  private unpin(commandArgument: string) {
+  private async unpin(commandArgument: string) {
     return this.pin(commandArgument, false);
   }
-  private duplicate(commandArgument: string) {
-    chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-      chrome.tabs.duplicate(tabs[0].id);
-    });
+  private async duplicate(commandArgument: string) {
+    const currentTab = await Core.getCurrentTab();
+    chrome.tabs.duplicate(currentTab.id);
     return true;
   }
 
-  private newWindow(commandArgument: string, incognito = false) {
+  private async newWindow(commandArgument: string, incognito = false) {
     if (commandArgument && !/^.*?\:\/\//.test(commandArgument)) {
       commandArgument = `http://${commandArgument}`;
     }
     chrome.windows.create({ url: commandArgument || 'about:blank', incognito });
     return true;
   }
-  private incognito(commandArgument: string) {
+  private async incognito(commandArgument: string) {
     return this.newWindow(commandArgument, true);
   }
 
-  private history(commandArgument: string) {
+  private async history(commandArgument: string) {
     return this.newTab('chrome://history/');
   }
-  private downloads(commandArgument: string) {
+  private async downloads(commandArgument: string) {
     return this.newTab('chrome://downloads/');
   }
-  private bookmarks(commandArgument: string) {
+  private async bookmarks(commandArgument: string) {
     return this.newTab('chrome://bookmarks/');
   }
-  private extensions(commandArgument: string) {
+  private async extensions(commandArgument: string) {
     return this.newTab('chrome://extensions/');
   }
-  private settings(commandArgument: string) {
+  private async settings(commandArgument: string) {
     return this.newTab('chrome://settings/');
   }
-  private passwords(commandArgument: string) {
+  private async passwords(commandArgument: string) {
     return this.newTab('chrome://settings/passwords');
   }
-  private autofill(commandArgument: string) {
+  private async autofill(commandArgument: string) {
     return this.newTab('chrome://settings/autofill');
   }
-  private clear(commandArgument: string) {
+  private async clear(commandArgument: string) {
     return this.newTab('chrome://settings/clearBrowserData');
   }
 
-  private zoom(commandArgument: string) {
-    chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-      chrome.tabs.setZoom(tabs[0].id, parseFloat(commandArgument) / 100.0 || 0);
-    });
+  private async zoom(commandArgument: string) {
+    const currentTab = await Core.getCurrentTab();
+    chrome.tabs.setZoom(currentTab.id, parseFloat(commandArgument) / 100.0 || 0);
     return true;
   }
 }
