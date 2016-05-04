@@ -1,0 +1,36 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "orchestrator/orchestrator.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "node/node.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "gulp/gulp.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "q/Q.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "mocha/mocha.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "webrtc/MediaStream.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "filewriter/filewriter.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "filesystem/filesystem.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "chrome/chrome.d.ts": {
+      "commit": "73f7bb99692823f1811817f9753a02b57af5305e"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Chommander",
+  "description": "Command palette for any website",
+  "version": "1.0.0",
+  "browser_action": {
+    "default_icon": "assets/icon.png",
+    "default_popup": "assets/popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P",
+        "chromeos": "Ctrl+Shift+P",
+        "linux": "Ctrl+Shift+P"
+      }
+    }
+  }
+}

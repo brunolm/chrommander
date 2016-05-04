@@ -1,0 +1,33 @@
+{
+  "name": "chrommander",
+  "version": "1.0.0",
+  "description": "Command palette for any website",
+  "main": "built/index.js",
+  "scripts": {
+    "build": "gulp build",
+    "build-watch": "gulp watch",
+    "clean": "rimraf built",
+    "rebuild": "gulp rebuild",
+    "test": "mocha built/spec",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunolm/chrommander"
+  },
+  "keywords": [
+    "chrome",
+    "chrome-extension",
+    "command",
+    "command-palette"
+  ],
+  "author": "Bruno Leonardo Michels (brunolm7@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.5.2",
+    "mocha": "^2.4.5",
+    "rimraf": "^2.5.2",
+    "typescript": "^1.8.10"
+  }
+}

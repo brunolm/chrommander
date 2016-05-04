@@ -1,0 +1,19 @@
+body {
+  background: #1e1e1e;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#container {
+  padding: 0px 6px;
+  width: 588px;
+}
+
+input {
+  background: #3C3C3C;
+  border: 1px solid #174A6C;
+  color: #d4d4d4;
+  outline: none;
+  padding: 3px 5px;
+  width: 576px;
+}
