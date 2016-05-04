@@ -13,4 +13,17 @@ namespace Core {
     }
     return link;
   }
+
+  export enum Keys {
+    Enter = 0x001C,
+    ArrowDown = 0xE050,
+    ArrowUp = 0xE048,
+  }
+}
+
+interface FunctionDictionary {
+  [index: string]: (commandArguments: string) => Promise<boolean>;
+}
+interface StringDictionary {
+  [index: string]: string;
 }

@@ -1,10 +1,3 @@
-interface FunctionDictionary {
-  [index: string]: (commandArguments: string) => Promise<boolean>;
-}
-interface StringDictionary {
-  [index: string]: string;
-}
-
 class BaseCommander {
   private _commandMap: FunctionDictionary = { };
   private _commandNamesMap: StringDictionary = { };
