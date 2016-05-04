@@ -6,4 +6,11 @@ namespace Core {
       });
     });
   }
+
+  export function parseLink(link: string) {
+    if (link && !/^.*?\:\/\//.test(link)) {
+      link = `http://${link}`;
+    }
+    return link;
+  }
 }

@@ -24,9 +24,7 @@ class BrowserCommands extends BaseCommander {
   }
 
   private async newTab(commandArgument: string) {
-    if (commandArgument && !/^.*?\:\/\//.test(commandArgument)) {
-      commandArgument = `http://${commandArgument}`;
-    }
+    commandArgument = Core.parseLink(commandArgument);
     chrome.tabs.create({ url: commandArgument || 'about:blank' });
     return true;
   }
@@ -45,9 +43,7 @@ class BrowserCommands extends BaseCommander {
   }
 
   private async newWindow(commandArgument: string, incognito = false) {
-    if (commandArgument && !/^.*?\:\/\//.test(commandArgument)) {
-      commandArgument = `http://${commandArgument}`;
-    }
+    commandArgument = Core.parseLink(commandArgument);
     chrome.windows.create({ url: commandArgument || 'about:blank', incognito });
     return true;
   }
