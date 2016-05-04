@@ -84,7 +84,7 @@ class BrowserCommands extends BaseCommander {
 
   private zoom(commandArgument: string) {
     chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-      chrome.tabs.setZoom(tabs[0].id, parseFloat(commandArgument) || 0);
+      chrome.tabs.setZoom(tabs[0].id, parseFloat(commandArgument) / 100.0 || 0);
     });
     return true;
   }
