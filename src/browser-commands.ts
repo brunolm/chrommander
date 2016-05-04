@@ -24,7 +24,7 @@ class BrowserCommands extends BaseCommander {
   }
 
   private newTab(commandArgument: string) {
-    if (!/^.*?\:\/\//.test(commandArgument)) {
+    if (commandArgument && !/^.*?\:\/\//.test(commandArgument)) {
       commandArgument = `http://${commandArgument}`;
     }
     chrome.tabs.create({ url: commandArgument || 'about:blank' });
@@ -33,7 +33,6 @@ class BrowserCommands extends BaseCommander {
   private pin(commandArgument: string, pinned = true) {
     chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
       chrome.tabs.update(tabs[0].id, { pinned });
-      debugger;
     });
     return true;
   }
@@ -48,7 +47,7 @@ class BrowserCommands extends BaseCommander {
   }
 
   private newWindow(commandArgument: string, incognito = false) {
-    if (!/^.*?\:\/\//.test(commandArgument)) {
+    if (commandArgument && !/^.*?\:\/\//.test(commandArgument)) {
       commandArgument = `http://${commandArgument}`;
     }
     chrome.windows.create({ url: commandArgument || 'about:blank', incognito });
