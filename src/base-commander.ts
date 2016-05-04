@@ -20,12 +20,12 @@ class BaseCommander {
 
   protected get commandNamesMap() { return this._commandNamesMap; }
 
-  public exec(commandArgument: string): boolean {
-    const commandName = commandArgument.split(' ')[0];
+  public exec(inputCommand: string): boolean {
+    const commandName = inputCommand.split(' ')[0];
     const command = this.commandNamesMap[commandName];
 
     if (typeof command !== undefined) {
-      return this[command](commandArgument.slice(commandName.length + 1));
+      return this[command](inputCommand.slice(commandName.length + 1));
     }
 
     return false;
