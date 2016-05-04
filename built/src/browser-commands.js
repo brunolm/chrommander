@@ -26,6 +26,22 @@ class BrowserCommands extends BaseCommander {
         chrome.tabs.create({ url: commandArgument || 'about:blank' });
         return true;
     }
+    pin(commandArgument, pinned = true) {
+        chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
+            chrome.tabs.update(tabs[0].id, { pinned: pinned });
+            debugger;
+        });
+        return true;
+    }
+    unpin(commandArgument) {
+        return this.pin(commandArgument, false);
+    }
+    duplicate(commandArgument) {
+        chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
+            chrome.tabs.duplicate(tabs[0].id);
+        });
+        return true;
+    }
     newWindow(commandArgument, incognito = false) {
         if (!/^.*?\:\/\//.test(commandArgument)) {
             commandArgument = `http://${commandArgument}`;
@@ -51,36 +67,20 @@ class BrowserCommands extends BaseCommander {
     settings(commandArgument) {
         return this.newTab('chrome://settings/');
     }
-    pin(commandArgument, pinned = true) {
-        chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-            chrome.tabs.update(tabs[0].id, { pinned: pinned });
-            debugger;
-        });
-        return true;
+    passwords(commandArgument) {
+        return this.newTab('chrome://settings/passwords');
     }
-    unpin(commandArgument) {
-        return this.pin(commandArgument, false);
+    autofill(commandArgument) {
+        return this.newTab('chrome://settings/autofill');
+    }
+    clear(commandArgument) {
+        return this.newTab('chrome://settings/clearBrowserData');
     }
     zoom(commandArgument) {
         chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
             chrome.tabs.setZoom(tabs[0].id, parseFloat(commandArgument) || 0);
         });
         return true;
-    }
-    clear(commandArgument) {
-        return this.newTab('chrome://settings/clearBrowserData');
-    }
-    duplicate(commandArgument) {
-        chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-            chrome.tabs.duplicate(tabs[0].id);
-        });
-        return true;
-    }
-    passwords(commandArgument) {
-        return this.newTab('chrome://settings/passwords');
-    }
-    autofill(commandArgument) {
-        return this.newTab('chrome://settings/autofill');
     }
 }
 //# sourceMappingURL=browser-commands.js.map

@@ -23,67 +23,70 @@ class BrowserCommands extends BaseCommander {
     };
   }
 
-  public newTab(commandArgument: string): boolean {
+  private newTab(commandArgument: string) {
     if (!/^.*?\:\/\//.test(commandArgument)) {
       commandArgument = `http://${commandArgument}`;
     }
     chrome.tabs.create({ url: commandArgument || 'about:blank' });
     return true;
   }
-  private newWindow(commandArgument: string, incognito = false): boolean {
-    if (!/^.*?\:\/\//.test(commandArgument)) {
-      commandArgument = `http://${commandArgument}`;
-    }
-    chrome.windows.create({ url: commandArgument || 'about:blank', incognito });
-    return true;
-  }
-  private incognito(commandArgument: string): boolean {
-    return this.newWindow(commandArgument, true);
-  }
-  private history(commandArgument: string): boolean {
-    return this.newTab('chrome://history/');
-  }
-  private downloads(commandArgument: string): boolean {
-    return this.newTab('chrome://downloads/');
-  }
-  private bookmarks(commandArgument: string): boolean {
-    return this.newTab('chrome://bookmarks/');
-  }
-  private extensions(commandArgument: string): boolean {
-    return this.newTab('chrome://extensions/');
-  }
-  private settings(commandArgument: string): boolean {
-    return this.newTab('chrome://settings/');
-  }
-  private pin(commandArgument: string, pinned = true): boolean {
+  private pin(commandArgument: string, pinned = true) {
     chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
       chrome.tabs.update(tabs[0].id, { pinned });
       debugger;
     });
     return true;
   }
-  private unpin(commandArgument: string): boolean {
+  private unpin(commandArgument: string) {
     return this.pin(commandArgument, false);
   }
-  private zoom(commandArgument: string): boolean {
-    chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-      chrome.tabs.setZoom(tabs[0].id, parseFloat(commandArgument) || 0);
-    });
-    return true;
-  }
-  private clear(commandArgument: string): boolean {
-    return this.newTab('chrome://settings/clearBrowserData');
-  }
-  private duplicate(commandArgument: string): boolean {
+  private duplicate(commandArgument: string) {
     chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
       chrome.tabs.duplicate(tabs[0].id);
     });
     return true;
   }
-  private passwords(commandArgument: string): boolean {
+
+  private newWindow(commandArgument: string, incognito = false) {
+    if (!/^.*?\:\/\//.test(commandArgument)) {
+      commandArgument = `http://${commandArgument}`;
+    }
+    chrome.windows.create({ url: commandArgument || 'about:blank', incognito });
+    return true;
+  }
+  private incognito(commandArgument: string) {
+    return this.newWindow(commandArgument, true);
+  }
+
+  private history(commandArgument: string) {
+    return this.newTab('chrome://history/');
+  }
+  private downloads(commandArgument: string) {
+    return this.newTab('chrome://downloads/');
+  }
+  private bookmarks(commandArgument: string) {
+    return this.newTab('chrome://bookmarks/');
+  }
+  private extensions(commandArgument: string) {
+    return this.newTab('chrome://extensions/');
+  }
+  private settings(commandArgument: string) {
+    return this.newTab('chrome://settings/');
+  }
+  private passwords(commandArgument: string) {
     return this.newTab('chrome://settings/passwords');
   }
-  private autofill(commandArgument: string): boolean {
+  private autofill(commandArgument: string) {
     return this.newTab('chrome://settings/autofill');
+  }
+  private clear(commandArgument: string) {
+    return this.newTab('chrome://settings/clearBrowserData');
+  }
+
+  private zoom(commandArgument: string) {
+    chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
+      chrome.tabs.setZoom(tabs[0].id, parseFloat(commandArgument) || 0);
+    });
+    return true;
   }
 }
